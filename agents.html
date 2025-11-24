@@ -12,6 +12,14 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- ДОБАВЬТЕ ЭТОТ БЛОК ЗАЩИТЫ ДОСТУПА -->
+    <div id="protectionOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; color: white;">
+        <div style="background: white; padding: 30px; border-radius: 10px; text-align: center; color: black;">
+            <h3>Требуется авторизация</h3>
+            <input type="password" id="passwordInput" placeholder="Введите пароль доступа" style="padding: 10px; margin: 10px 0; width: 250px;">
+            <button id="submitPassword" style="padding: 10px 20px;">Войти</button>
+        </div>
+    </div>
     <!-- Контейнер для динамической загрузки шапки -->
     <div id="header-container"></div>
 
