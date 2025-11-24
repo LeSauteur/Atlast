@@ -1,10 +1,3 @@
-// КОНФИГУРАЦИЯ ДОСТУПА
-const ACCESS_CONFIG = {
-    password: "Domian2024Secure",
-    validTokens: ["dm7x9a2b4c8d3e1f5g6h"],
-    sessionDuration: 8 * 60 * 60 * 1000
-};
-
 // Функция для загрузки HTML компонентов
 function loadComponent(id, file) {
     fetch(file)
@@ -114,56 +107,6 @@ function initializeHeader() {
 // Инициализация подвала
 function initializeFooter() {
     // Здесь можно добавить скрипты для футера при необходимости
-}
-
-// Защита доступа
-function checkAccess() {
-    const passwordInput = document.getElementById('passwordInput');
-    if (!passwordInput) return;
-    
-    const password = passwordInput.value;
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get('token');
-    
-    if (password === ACCESS_CONFIG.password || 
-        (token && ACCESS_CONFIG.validTokens.includes(token))) {
-        document.getElementById('protectionOverlay').style.display = 'none';
-        
-        const sessionData = {
-            authenticated: true,
-            expiry: Date.now() + ACCESS_CONFIG.sessionDuration
-        };
-        
-        localStorage.setItem('domianAccess', JSON.stringify(sessionData));
-        
-        if (token) {
-            // Удаляем токен из URL для безопасности
-            const url = new URL(window.location.href);
-            url.searchParams.delete('token');
-            window.history.replaceState({}, document.title, url.toString());
-        }
-        
-        return true;
-    } else {
-        alert('❌ Неверный пароль доступа');
-        return false;
-    }
-}
-
-function checkExistingSession() {
-    const sessionData = localStorage.getItem('domianAccess');
-    if (sessionData) {
-        try {
-            const { authenticated, expiry } = JSON.parse(sessionData);
-            if (authenticated && Date.now() < expiry) {
-                document.getElementById('protectionOverlay')?.style.display = 'none';
-                return true;
-            }
-        } catch (e) {
-            console.error('Error parsing session data:', e);
-        }
-    }
-    return false;
 }
 
 // Стандартные страницы и их стили
@@ -366,25 +309,6 @@ function updateActiveNavigation(currentPage) {
 
 // Загрузка всех компонентов при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
-    // Проверка доступа
-    const protectionOverlay = document.getElementById('protectionOverlay');
-    if (protectionOverlay && !checkExistingSession()) {
-        protectionOverlay.style.display = 'flex';
-        
-        const passwordInput = document.getElementById('passwordInput');
-        const submitButton = document.getElementById('submitPassword');
-        
-        if (passwordInput) {
-            passwordInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') checkAccess();
-            });
-        }
-        
-        if (submitButton) {
-            submitButton.addEventListener('click', checkAccess);
-        }
-    }
-    
     // Загрузка компонентов
     if (document.getElementById('header-container')) {
         loadComponent('header-container', 'header.html');
