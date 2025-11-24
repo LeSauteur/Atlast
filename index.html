@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домиан - Франшизная система</title>
+    <!-- Подключение Open Sans из Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* :root переменные для цветов */
+        :root {
+            /* Основные цвета */
+            --primary-color: rgb(230, 10, 15);
+            --primary-dark: #c00a0f;
+            --secondary-color: rgb(240, 130, 100);
+            
+            /* Оттенки серого */
+            --gray-90: rgb(110, 110, 110);
+            --gray-80: rgb(158, 158, 158);
+            --gray-60: rgb(200, 200, 200);
+            --gray-40: rgb(218, 218, 218);
+            --gray-20: rgb(236, 236, 236);
+            
+            /* Черные оттенки с прозрачностью */
+            --black-70: rgba(0, 0, 0, 0.7);
+            --black-50: rgba(0, 0, 0, 0.5);
+            --black-30: rgba(0, 0, 0, 0.3);
+            --black-20: rgba(0, 0, 0, 0.2);
+            --black-10: rgba(0, 0, 0, 0.1);
+            
+            /* Общие переменные */
+            --container-width: 1200px;
+            --border-radius: 8px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        /* Сброс стилей */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Общие стили */
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            color: var(--gray-90);
+            background-color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        img {
+            max-width: 100%;
+        }
+        
+        /* Шапка сайта */
+        .header {
+            background-color: white;
+            border-bottom: 1px solid var(--gray-40);
+            padding: 15px 0;
+            position: relative;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary-color);
+        }
+        
+ /* Верхняя строка с логотипом и цитатами */
+        .top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo-section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .logo-img {
+            max-height: 60px;
+            width: auto;
+        }
+        
+        .logo-subtitle {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-80);
+            margin-top: 5px;
+        }
+        
+        .contacts {
+            text-align: right;
+        }
+        /* Стили для строки с цитатами */
+        .quotes-bar {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 8px rgba(230, 10, 15, 0.3);
+            text-align: center;
+            max-width: 600px;
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+
+        .quote-text {
+            font-size: 16px;
+            font-weight: 600;
+            font-style: italic;
+            opacity: 0;
+            transform: translateY(-10px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        /* Анимация появления цитаты */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Баннер */
+        .header-banner {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .banner-image {
+            max-width: 1200px;
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        } 
+        .phone {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 5px;
+            transition: var(--transition);
+        }
+        
+        .phone:hover {
+            color: var(--primary-dark);
+        }
+        
+        .email {
+            font-size: 14px;
+            color: var(--gray-80);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .email:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Полуовальные кнопки */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(230, 10, 15, 0.3);
+        }
+        
+        .btn.secondary {
+            background: #0088cc;
+        }
+        
+        .btn.secondary:hover {
+            background: #0077b3;
+            box-shadow: 0 4px 8px rgba(0, 136, 204, 0.3);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 10px;
+            margin-left: 20px;
+        }
+        
+        .nav-container {
+            border-top: 1px solid var(--gray-40);
+            padding-top: 15px;
+        }
+        
+        .main-nav {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .nav-item {
+            position: relative;
+            cursor: pointer;
+            padding: 8px 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray-90);
+            transition: var(--transition);
+            text-decoration: none;
+            position: relative;
+        }
+        
+        .nav-item:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-item.active, 
+        .nav-item:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-color);
+        }
+        
+        .has-submenu::after {
+            content: '▼';
+            font-size: 10px;
+            margin-left: 5px;
+            color: var(--gray-80);
+        }
+        
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 260px;
+            box-shadow: 0 5px 20px var(--black-20);
+            border-radius: var(--border-radius);
+            z-index: 1000;
+            border: 1px solid var(--gray-40);
+            padding: 10px 0;
+            margin-top: 5px;
+        }
+        
+        .submenu.active {
+            display: block;
+        }
+        
+        .has-submenu:hover .submenu {
+            display: block;
+        }
+        
+        .submenu-item {
+            display: block;
+            padding: 12px 20px;
+            color: var(--gray-90);
+            border-bottom: 1px solid var(--gray-40);
+            transition: var(--transition);
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        
+        .submenu-item:hover {
+            background: var(--gray-20);
+            color: var(--primary-color);
+            padding-left: 25px;
+        }
+        
+        .submenu-item:last-child {
+            border-bottom: none;
+        }
+        
+    /* Баннер-ссылка */
+        .banner-link {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            text-align: center;
+            padding: 25px 0;
+            margin: 20px 0;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(230, 10, 15, 0.3);
+            transition: var(--transition);
+        }
+        
+        .banner-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(230, 10, 15, 0.4);
+        }
+        
+        /* Информация о франшизном отделе */
+        .franchise-contacts {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin: 20px 0;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .franchise-contacts h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        /* Основной контент */
+        .main-content {
+            padding: 40px 0;
+        }
+        
+        .welcome-banner {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #c00a0f 100%);
+            color: white;
+            padding: 60px 30px;
+            text-align: center;
+            border-radius: var(--border-radius);
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(230, 10, 15, 0.3);
+        }
+        
+        .welcome-title {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .welcome-text {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+        
+        .quick-access {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .quick-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            min-width: 180px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .quick-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        .section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            font-size: 28px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--gray-40);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: var(--primary-color);
+        }
+        
+        /* Календарь */
+        .calendar-container {
+            height: 600px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--black-20);
+            margin: 20px 0;
+        }
+        
+        /* Подвал сайта */
+        footer {
+            background: white;
+            color: var(--gray-90);
+            padding: 50px 0 30px 0;
+            border-top: 1px solid var(--gray-40);
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .footer-col {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-logo {
+            margin-bottom: 15px;
+        }
+        
+        .footer-title {
+            color: var(--primary-color);
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0 0 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .footer-links a {
+            color: var(--gray-90);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: var(--transition);
+            display: inline-block;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+        
+        .copyright {
+            font-size: 14px;
+            color: var(--gray-80);
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 30px;
+            border-top: 1px solid var(--gray-40);
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .welcome-title {
+                font-size: 36px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .top-bar {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contacts {
+                margin: 15px 0;
+            }
+            
+            .social-links {
+                justify-content: center;
+                margin-left: 0;
+            }
+            
+            .main-nav {
+                gap: 15px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .nav-item {
+                font-size: 18px;
+                width: 100%;
+            }
+            
+            .has-submenu::after {
+                position: absolute;
+                right: 0;
+            }
+            
+            .submenu {
+                position: static;
+                display: none;
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .submenu.active {
+                display: block;
+                margin-top: 10px;
+                margin-left: 20px;
+            }
+            
+            .welcome-title {
+                font-size: 28px;
+            }
+            
+            .welcome-text {
+                font-size: 16px;
+            }
+            
+            .quick-access {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .calendar-container {
+                height: 400px;
+            }
+            
+            .banner-link {
+                font-size: 20px;
+                padding: 15px 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-img {
+                width: 150px;
+            }
+            
+            .welcome-banner {
+                padding: 40px 20px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .calendar-container {
+                height: 350px;
+            }
+        }
+/* Стили для раздела инструкций */
+.instructions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Карточки */
+.rules-card,
+.links-card,
+.payments-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--gray-40);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.rules-card:hover,
+.links-card:hover,
+.payments-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    padding: 20px;
+    border-bottom: 1px solid var(--gray-40);
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.3em;
+    font-weight: 700;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+/* Список правил */
+.rules-list {
+    list-style: none;
+    counter-reset: rules-counter;
+    padding: 0;
+    margin: 0;
+}
+
+.rules-list li {
+    counter-increment: rules-counter;
+    margin-bottom: 15px;
+    padding-left: 35px;
+    position: relative;
+    line-height: 1.5;
+}
+
+.rules-list li:before {
+    content: counter(rules-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: var(--primary-color);
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.rules-list li:last-child {
+    margin-bottom: 0;
+}
+
+/* Полезные ссылки */
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+}
+
+.link-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: var(--gray-20);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--gray-90);
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.link-item:hover {
+    background: white;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+.link-icon {
+    font-size: 20px;
+    margin-right: 12px;
+    width: 30px;
+    text-align: center;
+}
+
+.link-text {
+    font-weight: 500;
+    flex: 1;
+}
+
+/* Оплаты */
+.payments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 15px;
+}
+
+.payment-item {
+    padding: 15px;
+    background: var(--gray-20);
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.payment-type {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.payment-contact {
+    color: var(--gray-90);
+    font-size: 15px;
+}
+
+/* Футер инструкций */
+.instructions-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn-large {
+    padding: 15px 30px;
+    font-size: 16px;
+    border-radius: 30px;
+}
+
+/* Карта */
+.map-section {
+    margin-top: 40px;
+}
+
+.map-container {
+    width: 100%;
+    height: 400px; /* Фиксированная высота для карты */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--gray-40);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .links-grid,
+    .payments-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .card-body {
+        padding: 20px;
+    }
+    
+    .rules-list li {
+        padding-left: 30px;
+    }
+    
+    .map-container {
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-header {
+        padding: 15px;
+    }
+    
+    .card-header h3 {
+        font-size: 1.1em;
+    }
+    
+    .card-body {
+        padding: 15px;
+    }
+    
+    .map-container {
+        height: 250px;
+    }
+    
+    .btn-large {
+        width: 100%;
+        padding: 12px 20px;
+    }
+}
+/* Добавьте эти стили в ваш существующий CSS */
+.offices-table td:nth-child(4) {
+    white-space: nowrap;
+    min-width: 150px;
+}
+</style>
+</head>
+<body>
+<!-- ЗАЩИТА ДОСТУПА -->
+<div id="protectionOverlay" class="protection-overlay" style="display:none;">
+    <div class="login-form">
+        <h2>🔒 Доступ к порталу Домиан</h2>
+        <p>Введите пароль для продолжения:</p>
+        <input type="password" id="passwordInput" placeholder="Пароль доступа">
+        <button onclick="checkAccess()">Войти в систему</button>
+        <div class="note">
+            Если у вас нет пароля, обратитесь к руководителю франшизного отдела
+        </div>
+    </div>
+</div>
+
+<script>
+// КОНФИГУРАЦИЯ ДОСТУПА
+const ACCESS_CONFIG = {
+    password: "Domian2024Secure", // ЗАМЕНИТЕ НА СВОЙ ПАРОЛЬ
+    validTokens: ["dm7x9a2b4c8d3e1f5g6h"],
+    sessionDuration: 8 * 60 * 60 * 1000
+};
+
+function checkAccess() {
+    const passwordInput = document.getElementById('passwordInput').value;
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+    
+    if (passwordInput === ACCESS_CONFIG.password || 
+        (token && ACCESS_CONFIG.validTokens.includes(token))) {
+        
+        document.getElementById('protectionOverlay').style.display = 'none';
+        
+        const sessionData = {
+            authenticated: true,
+            expiry: Date.now() + ACCESS_CONFIG.sessionDuration
+        };
+        localStorage.setItem('domianAccess', JSON.stringify(sessionData));
+        
+        if (token) {
+            window.history.replaceState({}, '', window.location.pathname);
+        }
+    } else {
+        alert('❌ Неверный пароль доступа');
+    }
+}
+
+function checkExistingSession() {
+    const sessionData = localStorage.getItem('domianAccess');
+    if (sessionData) {
+        const { authenticated, expiry } = JSON.parse(sessionData);
+        if (authenticated && Date.now() < expiry) {
+            document.getElementById('protectionOverlay').style.display = 'none';
+            return true;
+        }
+    }
+    return false;
+}
+
+// При загрузке страницы
+if (!checkExistingSession()) {
+    document.getElementById('protectionOverlay').style.display = 'flex';
+    document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') checkAccess();
+    });
+}
+</script>
+
+<style>
+.protection-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    background: linear-gradient(135deg, #e60a0f, #c00a0f); 
+    display: flex; justify-content: center; align-items: center; z-index: 9999;
+    font-family: 'Open Sans', Arial, sans-serif;
+}
+.login-form {
+    background: white; padding: 40px; border-radius: 12px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: center; 
+    max-width: 400px; width: 90%;
+}
+.login-form h2 { color: #e60a0f; margin-bottom: 20px; }
+.login-form input { 
+    width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #dadada; 
+    border-radius: 6px; font-size: 16px; box-sizing: border-box; 
+}
+.login-form button { 
+    background: #e60a0f; color: white; border: none; padding: 12px 30px; 
+    border-radius: 25px; cursor: pointer; font-size: 16px; margin-top: 10px; 
+    width: 100%; transition: background 0.3s ease; 
+}
+.login-form button:hover { background: #c00a0f; }
+.note { margin-top: 20px; font-size: 12px; color: #666; }
+</style>
+<!-- КОНЕЦ ЗАЩИТЫ ДОСТУПА -->
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <!-- Верхняя строка с логотипом и цитатами -->
+            <div class="top-row">
+                <div class="logo-section">
+                    <a href="index.html" class="logo-link">
+                        <img src="https://i.postimg.cc/sQN2Zcy7/logo.png" alt="Домиан" class="logo-img">
+                    </a>
+                    <div class="logo-subtitle">СЕТЬ АГЕНТСТВ НЕДВИЖИМОСТИ</div>
+                </div>
+                
+                <div class="quotes-bar">
+                    <div class="quote-text">Ваш успех определяется вашей настойчивостью</div>
+                </div>
+            </div>
+            
+            <!-- Баннер -->
+            <div class="header-banner">
+                <img src="https://radika1.link/2025/11/20/SNIMOK-EKRANA-2025-11-19-161849986cf332596f851b.png" alt="Баннер" class="banner-image">
+            </div>
+            
+            <!-- Навигация -->
+            <div class="nav-container">
+                <nav class="main-nav">
+                    <a href="index.html" class="nav-item">Главная</a>
+                    <a href="instructions.html" class="nav-item">Инструкции</a>
+                    <div class="nav-item has-submenu active">
+                        Франшизная папка
+                        <div class="submenu">
+                            <a href="business-system.html" class="submenu-item">Бизнес-система</a>
+                            <a href="business-processes.html" class="submenu-item">Бизнес процессы</a>
+                            <a href="office-organization.html" class="submenu-item">Организация офиса</a>
+                            <a href="agents.html" class="submenu-item">Агенту</a>
+                        </div>
+                    </div>
+                    <a href="calculators.html" class="nav-item">Калькуляторы</a>
+                    <a href="training.html" class="nav-item">Обучение</a>
+                    <a href="services.html" class="nav-item">Полезные сервисы</a>
+                    <a href="business.html" class="nav-item">Бизнес план/Окупаемость</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Баннер-ссылка (вставьте сюда вашу ссылку) -->
+            <a href="franchise-folder.html" class="banner-link">
+                ФРАНШИЗНАЯ ПАПКА - ПОЛНЫЙ ДОСТУП
+            </a>
+            
+            <!-- Контакты франшизного отдела -->
+            <div class="franchise-contacts">
+                <h3>Контакты франшизного отдела:</h3>
+                <p><strong>Руководитель Франшизного отдела:</strong> Андрейченко Валерий: +79185233833</p>
+                <p><strong>Ведущий специалист франшизного отдела:</strong> Егупов Алексей: +79612929866</p>
+            </div>
+
+            <!-- Приветственный баннер -->
+            <section class="welcome-banner">
+                <h1 class="welcome-title">Добро пожаловать в Домиан</h1>
+                <p class="welcome-text">
+                    Ваш надежный партнер в мире недвижимости. Профессиональная франшиза с полной поддержкой на всех этапах.
+                </p>
+                <div class="quick-access">
+                    <a href="business-processes.html" class="btn quick-btn">Бизнес процессы</a>
+                    <a href="office-organization.html" class="btn quick-btn">Организация офиса</a>
+                    <a href="business-system.html" class="btn quick-btn">Бизнес-система</a>
+                    <a href="agents.html" class="btn quick-btn">Агенту</a>
+                    <a href="calculators.html" class="btn quick-btn">Калькуляторы</a>
+                    <a href="training.html" class="btn quick-btn">Обучение</a>
+                    <a href="services.html" class="btn quick-btn">Полезные сервисы</a>
+                    <a href="#calendar" class="btn quick-btn secondary">Календарь событий</a>
+                </div>
+            </section>
+
+ <!-- Инструкции -->
+<section class="section" id="instructions">
+    <h2 class="section-title">Инструкции для франшизных офисов</h2>
+    
+    <div class="instructions-container">
+        <!-- Основные правила -->
+        <div class="rules-card">
+            <div class="card-header">
+                <h3>📋 Основные правила работы</h3>
+            </div>
+            <div class="card-body">
+                <ol class="rules-list">
+                    <li><strong>Группа WhatsApp "Франшиза Домиан"</strong> только для собственников.</li>
+                    <li><strong>Добавление людей в группу WhatsApp</strong> "Рассылка собственникам" только по письменной просьбе собственника.</li>
+                    <li><strong>Франшизный отдел</strong> ведет коммуникации только с собственником или назначенными ответственными лицами.</li>
+                    <li><strong>Сроки сдачи отчетности</strong> строго регламентированы. Франшизный отдел имеет право не принимать отчеты по истечению сроков а также отчеты вне установленной формы</li>
+                    <li><strong>Собственник самостоятельно</strong> следит за удалением уволенных сотрудников из систем компании посредством внесения информации в группу "Прием и увольнение" а так же подавая данные в IT отдел. Собственник следит за удалением из групп Whatsapp, CRM и иных ресурсов компании агентов и сотрудников которые были уволены.</li>
+                    <li><strong>Собственник самостоятельно</strong> ведет карточки компании в онлайн-ресурсах (2ГИС, Яндекс и т.д.) и оперативно реагирует на отзывы.</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Полезные ссылки -->
+        <div class="links-card">
+            <div class="card-header">
+                <h3>🔗 Полезные ссылки</h3>
+            </div>
+            <div class="card-body">
+                <div class="links-grid">
+                    <a href="https://disk.yandex.ru/d/TOHw0J-ac6ARMg" class="link-item">
+                        <span class="link-icon">📁</span>
+                        <span class="link-text">Франшизная папка</span>
+                    </a>
+                    <a href="https://t.me/+M74nIkEcc2NhNzky" class="link-item">
+                        <span class="link-icon">📢</span>
+                        <span class="link-text">Канал развития руководителей</span>
+                    </a>
+                    <a href="https://t.me/+TXAkj-w0VM1kN2M6" class="link-item">
+                        <span class="link-icon">💬</span>
+                        <span class="link-text">Чат развития руководителей</span>
+                    </a>
+                    <a href="https://disk.yandex.ru/d/TOHw0J-ac6ARMg/%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%D0%9F%D1%80%D0%B0%D0%B2%D0%BE%D0%BE%D0%B1%D0%BB%D0%B0%D0%B4%D0%B0%D1%82%D0%B5%D0%BB%D1%8F." class="link-item">
+                        <span class="link-icon">⚙️</span>
+                        <span class="link-text">Бизнес-Система (приложения к договору)</span>
+                    </a>
+                    <a href="https://docs.yandex.ru/docs/view?url=ya-disk-public%3A%2F%2Fa7Jr1RaNr9gXWDpu6hEE2oqj%2Brip5HCmHrZnkC%2BBCQqa%2BTWx8hS7vhd4zf7doQTxq%2FJ6bpmRyOJonT3VoXnDag%3D%3D%3A%2F%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%D0%9F%D1%80%D0%B0%D0%B2%D0%BE%D0%BE%D0%B1%D0%BB%D0%B0%D0%B4%D0%B0%D1%82%D0%B5%D0%BB%D1%8F.%2F%D0%9F%D0%A0%D0%98%D0%9B%D0%9E%D0%96%D0%95%D0%9D%D0%98%D0%95%2013%20%D0%9F%D0%A0%D0%90%D0%92%D0%98%D0%9B%D0%90%20%D0%92%D0%97%D0%90%D0%98%D0%9C%D0%9E%D0%94%D0%95%D0%99%D0%A1%D0%A2%D0%92%D0%98%D0%AF%20%D0%90%D0%93%D0%95%D0%9D%D0%A2%D0%9E%D0%92%20.%20%D0%AD%D0%A2%D0%98%D0%9A%D0%90%20(1).docx&name=%D0%9F%D0%A0%D0%98%D0%9B%D0%9E%D0%96%D0%95%D0%9D%D0%98%D0%95%2013%20%D0%9F%D0%A0%D0%90%D0%92%D0%98%D0%9B%D0%90%20%D0%92%D0%97%D0%90%D0%98%D0%9C%D0%9E%D0%94%D0%95%D0%99%D0%A1%D0%A2%D0%92%D0%98%D0%AF%20%D0%90%D0%93%D0%95%D0%9D%D0%A2%D0%9E%D0%92%20.%20%D0%AD%D0%A2%D0%98%D0%9A%D0%90%20(1).docx" class="link-item">
+                        <span class="link-icon">👥</span>
+                        <span class="link-text">Агентская этика</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Контакты для оплат -->
+        <div class="payments-card">
+            <div class="card-header">
+                <h3>💳 Списки и отчеты по оплатам</h3>
+            </div>
+            <div class="card-body">
+                <div class="payments-grid">
+                    <div class="payment-item">
+                        <div class="payment-type">Оплата роялти/аренды мест:</div>
+                        <div class="payment-contact">Егупов Алексей +79612929866</div>
+                    </div>
+                    <div class="payment-item">
+                        <div class="payment-type">Оплата авито:</div>
+                        <div class="payment-contact">Андрейченко Валерий +79185233833</div>
+                    </div>
+                    <div class="payment-item">
+                        <div class="payment-type">Оплата проверки СБ:</div>
+                        <div class="payment-contact">Поползина Екатерина +79287741010</div>
+                    </div>
+                    <div class="payment-item">
+                        <div class="payment-type">Оплата обучения:</div>
+                        <div class="payment-contact">Арлашина Алина +79885618612</div>
+                    </div>
+                    <div class="payment-item">
+                        <div class="payment-type">Оплата за поиск и обучения администратора:</div>
+                        <div class="payment-contact">Саргсян Анжелика +7928 106 67 14</div>
+                    </div>
+                    <div class="payment-item">
+                        <div class="payment-type">Оплата корпоративной продукции/мероприятий/поездок:</div>
+                        <div class="payment-contact">Деменков Даниил — +79289097483<br>Андрейченко Валерий +79185233833</div>
+                    </div>
+                    <div class="payment-item">
+                        <div class="payment-type">Списки участников корпоративов и их оплата:</div>
+                        <div class="payment-contact">Андрейченко Валерий +79185233833</div>
+                    </div>
+                    <div class="payment-item">
+                        <div class="payment-type">Списки участников поездок и их оплата:</div>
+                        <div class="payment-contact">Андрейченко Валерий +79185233833</div>
+                    </div>
+                    <div class="payment-item">
+                        <div class="payment-type">Списки объявлений Авито:</div>
+                        <div class="payment-contact">Андрейченко Валерий +79185233833</div>
+                    </div>
+                                        <div class="payment-item">
+                        <div class="payment-type">Возврат депозита за обучение стажеров:</div>
+                        <div class="payment-contact">Андросова Евгения +79286109099</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Кнопка -->
+        <div class="instructions-footer">
+            <a href="instructions.html" class="btn btn-large">📄 Полная версия инструкций</a>
+        </div>
+    </div>
+</section>
+
+
+<!-- Список офисов -->
+<section class="section" id="offices">
+    <h2 class="section-title">🏢 Список офисов</h2>
+    
+    <!-- Важное уведомление -->
+    <div class="attention-card">
+        <div class="attention-icon">⚠️</div>
+        <div class="attention-content">
+            <h3>ВНИМАНИЕ</h3>
+            <p>Если данные вашего офиса неверно указаны, обратитесь к <strong>Егупову Алексею</strong> для внесения изменений.</p>
+        </div>
+    </div>
+
+    <!-- Поиск -->
+    <div class="search-container">
+        <input type="text" id="search" placeholder="🔍 Поиск по названию, адресу, собственнику или телефону..." class="search-input" />
+        <div class="search-stats">
+            <span id="active-count">0</span> активных офисов | 
+            <span id="orlov-count">0</span> офисов Павла Орлова
+        </div>
+    </div>
+
+    <!-- Активные офисы -->
+    <div class="offices-section">
+        <div class="section-header">
+            <h3>✅ Активные офисы</h3>
+            <div class="office-count" id="active-filter-count">0</div>
+        </div>
+        <div class="table-container">
+            <table id="active-table" class="offices-table">
+                <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Название офиса</th>
+                        <th>Собственник</th>
+                        <th>Телефон</th>
+                        <th>Адрес</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Офисы Павла Орлова -->
+    <div class="offices-section orlov-section">
+        <div class="section-header">
+            <h3>✅ Офисы Павла Орлова</h3>
+            <div class="office-count" id="orlov-filter-count">0</div>
+        </div>
+        <div class="table-container">
+            <table id="orlov-table" class="offices-table orlov-table">
+                <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Название офиса</th>
+                        <th>Собственник</th>
+                        <th>Телефон</th>
+                        <th>Адрес</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Повтор уведомления -->
+    <div class="attention-card">
+        <div class="attention-icon">⚠️</div>
+        <div class="attention-content">
+            <h3>ВНИМАНИЕ</h3>
+            <p>Если данные вашего офиса неверно указаны, обратитесь к <strong>Егупову Алексею</strong> для внесения изменений.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Карта -->
+<div class="map-section">
+    <h3 class="section-title">📍 Наши офисы на карте</h3>
+    <div class="map-container">
+        <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aee05bc16edf88b244f57dac60f9593bfa626e736bb7374af9ec83e8efd06b7e2&amp;width=100%&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+    </div>
+</div>
+
+<style>
+/* Стили для раздела офисов */
+.offices-section {
+    margin-bottom: 40px;
+}
+
+.orlov-section {
+    margin-top: 40px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.section-header h3 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.4em;
+}
+
+.office-count {
+    background: var(--primary-color);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Карточка внимания */
+.attention-card {
+    display: flex;
+    align-items: flex-start;
+    background: #fff9e6;
+    border: 1px solid #ffd966;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 25px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.attention-icon {
+    font-size: 24px;
+    margin-right: 15px;
+    margin-top: 2px;
+}
+
+.attention-content h3 {
+    margin: 0 0 8px 0;
+    color: #e67e22;
+    font-size: 1.2em;
+}
+
+.attention-content p {
+    margin: 0;
+    color: #8e6c1f;
+    line-height: 1.5;
+}
+
+/* Поиск */
+.search-container {
+    margin: 25px 0;
+}
+
+.search-input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid var(--gray-40);
+    border-radius: 30px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(230, 10, 15, 0.2);
+}
+
+.search-stats {
+    text-align: center;
+    margin-top: 10px;
+    color: var(--gray-80);
+    font-size: 14px;
+}
+
+/* Таблицы */
+.table-container {
+    overflow-x: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--gray-40);
+}
+
+.offices-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.offices-table th {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    padding: 15px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+    position: sticky;
+    top: 0;
+}
+
+.offices-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--gray-40);
+    font-size: 14px;
+}
+
+.offices-table tbody tr {
+    transition: all 0.2s ease;
+}
+
+.offices-table tbody tr:hover {
+    background-color: #f8f9fa;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.offices-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.orlov-table th {
+    background: linear-gradient(135deg, #2980b9, #3498db);
+}
+
+/* Карта */
+.map-section {
+    margin-top: 40px;
+}
+
+.map-container {
+    width: 100%;
+    height: 400px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--gray-40);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .offices-table th,
+    .offices-table td {
+        padding: 10px 8px;
+        font-size: 13px;
+    }
+    
+    .search-input {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    
+    .attention-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .attention-icon {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .map-container {
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .offices-table th,
+    .offices-table td {
+        padding: 8px 6px;
+        font-size: 12px;
+    }
+    
+    .map-container {
+        height: 250px;
+    }
+}
+</style>
+
+<script>
+    // Полные данные из Лист1
+   // Полные данные из Лист1
+    const offices = [
+      { id: 1, name: "Квартал", address: "г. Аксай, ул. Толпинского 130, офис 4", phone: "+7-953-609-11-22", owner: "Алиева Зухра" },
+      { id: 2, name: "Домиан Добровольского", address: "г. Ростов-на-Дону, ул. Добровольского 13", phone: "+7-909-410-10-40", owner: "Баев Денис" },
+      { id: 3, name: "Домиан-Шолохова", address: "г. Ростов-на-Дону, 14 линия 84 «б»", phone: "+7-903-403-23-06", owner: "Баранова Ольга" },
+      { id: 4, name: "Домиан Эстет", address: "г. Ростов-на-Дону, временно без офиса", phone: "+7-928-619-10-00", owner: "Бордиенко Роман" },
+      { id: 5, name: "Батайск 2", address: "г. Батайск, ул. Куйбышева 127", phone: "+7-928-133-64-32", owner: "Брагин Андрей" },
+      { id: 6, name: "Домиан «Семейный»", address: "г. Батайск, ул. Заводская 184, офис 22", phone: "+7-988-539-73-42", owner: "Брыкалина Лилия" },
+      { id: 7, name: "Шахты на Маяковского", address: "г. Шахты, ул. Маяковского 18А", phone: "+7-918-507-10-00", owner: "Воронина Мария" },
+      { id: 8, name: "Домиан Коммерция", address: "г. Ростов-на-Дону, ул. Береговая 6 (ТЦ Белый Ангел)", phone: "+7-928-229-47-77", owner: "Галкин Алексей / Шаповалов Виктор" },
+      { id: 9, name: "Гвардейский", address: "г. Ростов-на-Дону, пр. Буденновский 59", phone: "+7-928-611-94-11", owner: "Грибенюк Светлана" },
+      { id: 10, name: "Аксай Центральный", address: "г. Аксай, ул. Заводская 22", phone: "+7-952-588-83-67", owner: "Гуков Денис" },
+      { id: 11, name: "Нариманова", address: "г. Ростов-на-Дону, ул. Нагибина 40Б, офис 308", phone: "+7-952-588-83-67", owner: "Гуков Денис" },
+      { id: 12, name: "Домиан офис Даниловых", address: "г. Ростов-на-Дону, ул. Сальская 101, офис 121", phone: "+7-988-990-89-13", owner: "Данилова Ольга Георгиевна" },
+      { id: 14, name: "Домиан Уютный Дом", address: "г. Ростов-на-Дону, ул. Мечникова 114/134, офис 210", phone: "+7-909-432-49-99", owner: "Дудка Павел" },
+      { id: 15, name: "Батайск Южный", address: "г. Батайск, ул. Почтовая 202-204", phone: "+7-908-513-78-42", owner: "Ефремова Наталья/Черникова Елена" },
+      { id: 16, name: "Домиан Малиновского", address: "г. Ростов-на-Дону, ул. Малиновского 46а/27, офис 24", phone: "+7-918-574-35-20", owner: "Заичкин Иван" },
+      { id: 17, name: "ВектоР Домиан", address: "г. Ростов-на-Дону, ул. Зорге 17, офис 11", phone: "+7-961-316-57-17", owner: "Залещенко Анна" },
+      { id: 18, name: "Новочеркасск 2", address: "г. Новочеркасск, ул. Народная 1, офис 114", phone: "+7-938-154-59-15", owner: "Зеленьков Александр" },
+      { id: 19, name: "Домиан Сельмаш", address: "г. Ростов-на-Дону, ул. 1-й Конной Армии 13в, офис 22", phone: "+7-938-154-59-15", owner: "Зеленьков Александр/Шологон Владимир" },
+      { id: 20, name: "Домиан Северный-3", address: "г. Ростов-на-Дону, пр. Космонавтов 31В/21В, 3 этаж, офис 30", phone: "+7-928-229-12-44", owner: "Кивва Ирина" },
+      { id: 21, name: "Суворовский 2", address: "г. Ростов-на-Дону, ул. Петренко 18", phone: "+7-988-996-13-00", owner: "Князев Павел" },
+      { id: 22, name: "ЛеМар Вересаево", address: "г. Ростов-на-Дону, ул. Берберовская 2/101, стр. 2, офис 12", phone: "+7-988-571-57-14", owner: "Козлова Елена" },
+      { id: 23, name: "Домиан Эксперт", address: "г. Ростов-на-Дону, ул. Б. Садовая 162/70, кв. 7", phone: "+7-918-558-78-98", owner: "Котовская Ольга" },
+      { id: 24, name: "Домиан Рантье", address: "г. Ростов-на-Дону, ул. Красноармейская 121", phone: "+7-905-455-96-56", owner: "Кравцов Андрей" },
+      { id: 25, name: "Новочеркасск 1", address: "г. Новочеркасск, пр. Платовский 92", phone: "+7-903-463-31-25", owner: "Лебедев Никита" },
+      { id: 26, name: "Севастополь", address: "г. Севастополь, ул. Астана Кесаева 3б, 4 этаж, офис 25", phone: "+7-904-448-66-57", owner: "Бородина Наталья" },
+      { id: 27, name: "Западный Алмаз", address: "г. Ростов-на-Дону, пр. Стачки 188", phone: "+7-928-754-41-47", owner: "Лобань Илона" },
+      { id: 28, name: "Домиан Нагибина", address: "г. Ростов-на-Дону, ул. Нагибина 23", phone: "+7-903-401-55-45", owner: "Марков Алексей" },
+      { id: 29, name: "Аксай", address: "г. Аксай, ул. Ленина 41", phone: "+7-938-147-96-60", owner: "Межов Александр" },
+      { id: 30, name: "Домиан ЛегеАртис", address: "пос. Верхнетемерницкий, ул. Обсерваторная 104/1, офис 15", phone: "+7-938-147-96-60", owner: "Межов Александр" },
+      { id: 31, name: "Ленинаван", address: "г. Ростов-на-Дону, ул. Шаумяна 1е", phone: "+7-938-147-96-60", owner: "Межов Александр" },
+      { id: 32, name: "Янтарный", address: "Камышеваха, ул. Платиновая 10/26", phone: "+7-938-147-96-60", owner: "Межов Александр" },
+      { id: 33, name: "Домиан Риелт", address: "ул. Туполева 16е, офис 523", phone: "+7-928-197-03-77", owner: "Молчанов Андрей" },
+      { id: 34, name: "Левенцовский 1", address: "г. Ростов-на-Дону, ул. Еременко 99", phone: "+7-951-526-98-48", owner: "Москвина Наталья" },
+      { id: 35, name: "Домиан Верхняя Александровка", address: "г. Ростов-на-Дону, ул. 40 лет Победы 156/7", phone: "+7-999-691-46-34", owner: "Некрасова Юлия" },
+      { id: 36, name: "Золотой квадрат", address: "г. Ростов-на-Дону, ул. Малиновского 66/1", phone: "+7-905-427-43-47", owner: "Немченко Вадим" },
+      { id: 38, name: "Капитал", address: "г. Ростов-на-Дону, ул. Подвойского 58/85", phone: "+7-988-556-98-88", owner: "Обдул Алла" },
+      { id: 39, name: "Западный 2", address: "г. Ростов-на-Дону, ул. Зорге 64б", phone: "+7-961-296-90-00", owner: "Панасенко Артем/Север Илья" },
+      { id: 40, name: "Домиан Премьер", address: "г. Ростов-на-Дону, ул. М. Горького 120, офис 22", phone: "+7-961-296-90-00", owner: "Панасенко Артем" },
+      { id: 41, name: "Батайск 1", address: "г. Батайск, ул. Энгельса 188", phone: "+7-918-532-58-87", owner: "Панасенко/Курмак Марина" },
+      { id: 43, name: "Домиан Лермонт", address: "г. Ростов-на-Дону, ул. Лермонтовская 102", phone: "+7-913-983-53-13", owner: "Рубежанская Кристина" },
+      { id: 44, name: "Новочеркасск Октябрьский", address: "г. Новочеркасск, ул. Калинина 65б", phone: "+7-951-519-55-59", owner: "Лебедев Никита/Сафронов Андрей" },
+      { id: 45, name: "Первомайский", address: "г. Ростов-на-Дону, временно без офиса", phone: "+7-908-506-54-51", owner: "Скворцова Елена" },
+      { id: 46, name: "Меркурий", address: "г. Ростов-на-Дону, пр. Коммунистический 25", phone: "+7-928-270-80-98", owner: "Скрыпникова Наталья" },
+      { id: 47, name: "Офис на Пушкинской", address: "г. Ростов-на-Дону, ул. Пушкинская 206", phone: "+7-951-516-38-16", owner: "Смехнова Оксана" },
+      { id: 48, name: "Домиан Свердловск ЛНР", address: "временно без офиса", phone: "+7-959-521-30-70", owner: "Теплинский Сергей" },
+      { id: 49, name: "Домиан Волгодонск Первый", address: "г. Волгодонск, ул. Энтузиастов 26б", phone: "+7-905-428-76-50", owner: "Тёркин Валерий/Лебедев Никита" },
+      { id: 50, name: "Западный Олимп", address: "г. Ростов-на-Дону, ул. Зорге 11", phone: "+7-905-428-76-50", owner: "Тёркин Валерий" },
+      { id: 51, name: "Домиан Белая Калитва", address: "г. Белая Калитва, ул. Калинина 2", phone: "+7-989-515-00-06", owner: "Титовский Роман" },
+      { id: 52, name: "Домиан Каменск-Шахтинский", address: "г. Каменск-Шахтинский, ул. Ворошилова 13", phone: "+7-900-555-00-06", owner: "Титовский Роман" },
+      { id: 53, name: "Домиан Миллерово", address: "г. Миллерово, ул. Российская 59", phone: "+7-989-525-00-06", owner: "Титовский Роман" },
+      { id: 54, name: "Шахты Результат+", address: "г. Шахты, ул. Шевченко 125А", phone: "+7-989-515-00-06", owner: "Титовский Роман" },
+      { id: 55, name: "Домиан Стачки", address: "г. Ростов-на-Дону, пр. Стачки 210", phone: "+7-909-403-89-33", owner: "Андреева Наталья" },
+      { id: 56, name: "Домиан Первые Соловушки", address: "г. Ростов-на-Дону, ул. Вятская 57", phone: "+7-918-558-73-72", owner: "Червоный Валерий" },
+      { id: 58, name: "Домиан Кристалл", address: "г. Ростов-на-Дону, ЖК Екатерининский, ул. Магнитогорская 1а", phone: "+7-928-138-66-30", owner: "Чумакова Лариса" },
+      { id: 59, name: "Западный 5", address: "г. Ростов-на-Дону, ул. Зорге 56", phone: "+7-928-775-54-43", owner: "Чуносов Михаил" },
+      { id: 60, name: "Горизонт", address: "г. Ростов-на-Дону, ул. Ларина 45, стр. 2", phone: "+7-950-868-10-00", owner: "Чуприна Екатерина" },
+      { id: 61, name: "Домиан Таганрог", address: "г. Таганрог, ул. Социалистическая 2, офис 310", phone: "+7-938-143-33-01", owner: "Шаповалов Сергей" },
+      { id: 62, name: "Западный 11", address: "г. Ростов-на-Дону, ул. Малиновского 3 «б», офис 25, 2 этаж", phone: "+7-988-580-14-73", owner: "Шиянова Елена" },
+      { id: 63, name: "Полёт", address: "ул. Берберовская 24", phone: "+7-918-521-51-52", owner: "Юдин Александр" },
+      { id: 64, name: "Восточный", address: "г. Ростов-на-Дону, ул. 40 лет Победы 216, офис 5", phone: "+7-908-180-42-13", owner: "Яцык Екатерина" },
+      { id: 65, name: "Аллея Домиан", address: "г. Ростов-на-Дону, ул. Маршала Жукова 16/6", phone: "+7-952-607-92-22", owner: "Лизунова Татьяна Сергеевна" },
+      { id: 66, name: "Домиан Кореновск", address: "г. Кореновск, ул. Красная 23", phone: "+7-918-364-45-00", owner: "Глоба Оксана Николаевна" },
+      { id: 67, name: "Домиан Феникс", address: "г. Ростов-на-Дону, ул. Троллейбусная 24/2В, 6 этаж, каб. 617", phone: "+7-988-990-89-13", owner: "Данилов Сергей Константинович" },
+      { id: 68, name: "Комфорт", address: "г. Ростов-на-Дону, ул. Извилистая 17а", phone: "+7-961-321-90-69", owner: "Дионисов Евгений Александрович" },
+      { id: 69, name: "Лайф", address: "г. Ростов-на-Дону, ул. Армянская 10", phone: "+7-909-404-34-17", owner: "Геворкян Овсеп Мкртичович" }
+    ];
+
+    const orlovOffices = [
+      { id: 70, name: "Красный Верес", address: "г. Ростов-на-Дону, ул. Вересаева 101/3, стр. 2", phone: "8 (863) 300-00-06", owner: "ИП Орлов Павел Викторович" },
+      { id: 71, name: "Центр 1", address: "г. Ростов-на-Дону, ул. Красноармейская 121, 2 этаж", phone: "8 (863) 300-00-06", owner: "ИП Орлов Павел Викторович" },
+      { id: 72, name: "Южный", address: "г. Ростов-на-Дону, ул. Красноармейская 121, 2 этаж", phone: "8 (863) 300-00-06", owner: "ИП Орлов Павел Викторович" },
+      { id: 73, name: "Северный 1", address: "г. Ростов-на-Дону, пр. Космонавтов 32в, 3 этаж", phone: "8 (863) 300-00-06", owner: "ИП Орлов Павел Викторович" },
+      { id: 74, name: "Октябрьский", address: "г. Ростов-на-Дону, ул. Ленина 46", phone: "8 (863) 300-00-06", owner: "ИП Орлов Павел Викторович" },
+      { id: 75, name: "Левенцовский 2", address: "г. Ростов-на-Дону, ул. Еременко 100/70", phone: "8 (863) 300-00-06", owner: "ИП Орлов Павел Викторович" },
+      { id: 76, name: "Западный 1", address: "г. Ростов-на-Дону, пр. Коммунистический 25", phone: "8 (863) 300-00-06", owner: "ИП Орлов Павел Викторович" },
+      { id: 77, name: "Краснодар 1", address: "г. Краснодар, Плановый проезд 5", phone: "8 (863) 300-00-06", owner: "ИП Орлов Павел Викторович" },
+      { id: 78, name: "Сальск-Пушкинский", address: "г. Сальск, ул. Пушкина 32", phone: "8 (863) 300-00-06", owner: "ИП Орлов Павел Викторович" }
+    ];
+
+    // Удаляем "Левенцовский 1" (id 34) и "Западный 11" (id 62) из активных
+    const activeOffices = offices.filter(o => ![34, 62].includes(o.id));
+
+    function renderTable(data, tableBodyId) {
+      const tbody = document.querySelector(`#${tableBodyId} tbody`);
+      tbody.innerHTML = '';
+      data.forEach((item, idx) => {
+        const row = tbody.insertRow();
+        row.innerHTML = `
+          <td>${item.id}</td>
+          <td>${item.name || '—'}</td>
+          <td>${item.owner || '—'}</td>
+          <td>${item.phone || '—'}</td>
+          <td>${item.address || '—'}</td>
+        `;
+        row.dataset.search = `${item.id} ${item.name} ${item.owner} ${item.phone} ${item.address}`.toLowerCase();
+      });
+      
+      // Обновляем счетчики
+      updateCounters();
+    }
+
+    function updateCounters() {
+      // Общие счетчики
+      document.getElementById('active-count').textContent = activeOffices.length;
+      document.getElementById('orlov-count').textContent = orlovOffices.length;
+      
+      // Счетчики после фильтрации
+      const activeVisible = document.querySelectorAll('#active-table tbody tr:not([style*="display: none"])').length;
+      const orlovVisible = document.querySelectorAll('#orlov-table tbody tr:not([style*="display: none"])').length;
+      
+      document.getElementById('active-filter-count').textContent = activeVisible;
+      document.getElementById('orlov-filter-count').textContent = orlovVisible;
+    }
+
+    renderTable(activeOffices, 'active-table');
+    renderTable(orlovOffices, 'orlov-table');
+
+    document.getElementById('search').addEventListener('input', function () {
+      const query = this.value.toLowerCase();
+      document.querySelectorAll('#active-table tbody tr, #orlov-table tbody tr').forEach(row => {
+        const text = row.dataset.search;
+        row.style.display = text.includes(query) ? '' : 'none';
+      });
+      updateCounters();
+    });
+</script>
+        </div>
+    </main>
+            <!-- Календарь событий -->
+            <section class="section" id="calendar">
+                <h2 class="section-title">Календарь событий</h2>
+                <div class="calendar-container">
+                    <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=2&bgcolor=%23ffffff&ctz=Europe%2FMoscow&src=NGY5NzE3NGYzYTFjNDMxZTZhYWQ5NzZmNmFhMTY0MDAwN2Q4M2NjZTc4ZGMzMWQ2YTI0M2Y5MDE3MGFjMDdhYUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23cca6ac" 
+                        style="border:0; width:100%; height:100%;" 
+                        frameborder="0" 
+                        scrolling="no"></iframe>
+                </div>
+            </section>
+
+    <!-- Подвал сайта -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="https://i.postimg.cc/sQN2Zcy7/logo.png" alt="Домиан" style="max-width: 200px; height: auto; display: block; margin-bottom: 15px;">
+                    </div>
+                    
+                    <div class="franchise-contacts" style="margin-bottom: 20px; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                        <h3 style="color: var(--primary-color); margin-bottom: 10px; font-size: 18px;">Контакты франшизного отдела:</h3>
+                        <p><strong>Руководитель Франшизного отдела:</strong> Андрейченко Валерий: +79185233833</p>
+                        <p><strong>Ведущий специалист франшизного отдела:</strong> Егупов Алексей: +79612929866</p>
+                    </div>
+                    
+                    <div class="social-links" style="margin-bottom: 20px;">
+                        <a href="https://vk.com/domian_ru" class="btn secondary" style="margin-right: 10px;">ВКонтакте</a>
+                        <a href="https://t.me/Domian_main" class="btn secondary">Телеграм</a>
+                    </div>
+                    
+                    <div class="copyright">
+                        <p>© ИП Орлов П.В. АН «ДОМИАН» 2008-2025. Все права защищены.</p>
+                        <p>При использовании материалов ссылка на источник обязательна.</p>
+                    </div>
+                </div>
+  </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">НАВИГАЦИЯ</h3>
+                    <div class="footer-links">
+                        <a href="index.html">Главная</a>
+                        <a href="instructions.html">Инструкции</a>
+                        <a href="franchise-folder.html">Франшизная папка</a>
+                        <a href="calculators.html">Калькуляторы</a>
+                        <a href="training.html">Обучение</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        document.addEventListener('DOMContentLoaded', function() {
+            const submenuItems = document.querySelectorAll('.has-submenu');
+            
+            submenuItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        const submenu = this.querySelector('.submenu');
+                        if (submenu) {
+                            submenu.classList.toggle('active');
+                            this.classList.toggle('active');
+                        }
+                    }
+                });
+            });
+            
+            // Закрытие меню при клике вне его
+            document.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    submenuItems.forEach(item => {
+                        if (!item.contains(e.target)) {
+                            const submenu = item.querySelector('.submenu');
+                            if (submenu) {
+                                submenu.classList.remove('active');
+                                item.classList.remove('active');
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+     <script>
+        // Мобильное меню
+        document.addEventListener('DOMContentLoaded', function() {
+            const submenuItems = document.querySelectorAll('.has-submenu');
+            
+            submenuItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        const submenu = this.querySelector('.submenu');
+                        if (submenu) {
+                            submenu.classList.toggle('active');
+                            this.classList.toggle('active');
+                        }
+                    }
+                });
+            });
+            
+            // Закрытие меню при клике вне его
+            document.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    submenuItems.forEach(item => {
+                        if (!item.contains(e.target)) {
+                            const submenu = item.querySelector('.submenu');
+                            if (submenu) {
+                                submenu.classList.remove('active');
+                                item.classList.remove('active');
+                            }
+                        }
+                    });
+                }
+            });
+            
+            // Массив бизнес-цитат
+            const businessQuotes = [
+                "Ваш успех определяется вашей настойчивостью",
+                "Лидерство — это не титул, это действие и пример",
+                "Инвестируйте в знания — это приносит наибольшие дивиденды",
+                "Успех — это движение от неудачи к неудаче без потери энтузиазма",
+                "Единственный способ сделать великую работу — любить то, что вы делаете",
+                "Не ждите подходящего момента — создавайте его",
+                "Ваше время ограничено, не тратьте его, живя чужой жизнью",
+                "Инновации отличают лидера от догоняющего",
+                "Самый большой риск — не рисковать вообще",
+                "Мечты не работают, пока не работаешь ты",
+                "Успех — это 10% вдохновения и 90% пота",
+                "Каждая сложная ситуация содержит в себе возможности",
+                "Ваша сеть контактов — это ваш чистый капитал",
+                "Лучшее время посадить дерево было 20 лет назад. Следующий лучший момент — сейчас",
+                "Качество — это не случайность, это результат умственных усилий"
+            ];
+
+            // Функция для смены цитат
+            function rotateQuotes() {
+                const quoteElement = document.querySelector('.quote-text');
+                let currentIndex = 0;
+                
+                // Показываем первую цитату сразу
+                quoteElement.textContent = businessQuotes[currentIndex];
+                
+                // Меняем цитату каждые 5 секунд
+                setInterval(() => {
+                    currentIndex = (currentIndex + 1) % businessQuotes.length;
+                    
+                    // Анимация смены
+                    quoteElement.style.opacity = '0';
+                    quoteElement.style.transform = 'translateY(-10px)';
+                    
+                    setTimeout(() => {
+                        quoteElement.textContent = businessQuotes[currentIndex];
+                        quoteElement.style.opacity = '1';
+                        quoteElement.style.transform = 'translateY(0)';
+                    }, 300);
+                    
+                }, 5000); // 5 секунд
+            }
+
+            // Запускаем при загрузке страницы
+            rotateQuotes();
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+
